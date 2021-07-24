@@ -1,4 +1,7 @@
 ﻿#include <iostream>
+#include <math.h>
+#include <vector>
+#include <list>
 
 using namespace std;
 
