@@ -9,4 +9,5 @@ int main()
 {
     std::cout << "Hello World!" << endl;
     cout << "Well, file commited" << endl;
+    return 0;
 }
