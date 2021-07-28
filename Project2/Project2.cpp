@@ -55,6 +55,12 @@ void CleaningMemory (Queue* first)
     }
 }
 
+void PossiblyFutureTask(Queue** first)
+{
+
+}
+
+
 int main()
 {
     Queue* first = NULL;
