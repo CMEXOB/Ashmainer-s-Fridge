@@ -60,6 +60,50 @@ void PossiblyFutureTask(Queue** first)
 
 }
 
+void maintask1(Queue** first)
+{
+    if ((*first) == NULL)
+    {
+        cout << "There is only no elements" << endl;
+        return;
+    }
+    Queue* ptr = *first;
+    for (int i = 0; ptr != NULL; i++)
+    {
+        if (i == 0)
+        {
+            *first = (*first)->next;
+            delete ptr;
+            ptr = *first;
+        }
+        else if (ptr->next)
+        {
+            Queue* del = ptr->next;
+            ptr->next = ptr->next->next;
+            ptr = ptr->next;
+            delete del;
+        }
+        else ptr = NULL;
+    }
+}
+
+void maintask2(Queue **first)
+{
+    Queue* ptr = *first;
+    Queue* p;
+    while (ptr != NULL)
+    {
+        if (ptr->next) p = ptr->next;
+        else return;
+        if (ptr->next->next)
+        {
+            ptr->next = ptr->next->next;
+        }
+        else ptr->next = NULL;
+        delete p;
+        ptr = ptr->next;
+    }
+}
 
 int main()
 {
@@ -70,7 +114,9 @@ int main()
     {
         cout << "Press 1 to enter/create new queue" << endl <<
             "Press 2 to view the queue" << endl <<
-            "Press 3 to finish the perfomance" << endl;
+            "Press 3 to do main task1" << endl <<
+            "Press 4 to do main task2" << endl <<
+            "Press 5 to finish the perfomance" << endl;
         cin >> wish;
         switch (wish)
         {
@@ -90,7 +136,14 @@ int main()
             View(first);
             break;
 
-        case 3:
+        case 3: 
+            maintask1(&first);
+            break;
+
+        case 4:
+            maintask2(&first);
+            break;
+        case 5:
             cout << "Hope that was interesting to work with me, goodbye!" << endl;
             CleaningMemory(first);
             endsign = true;
