@@ -78,6 +78,33 @@ void maintask1(Queue **first)
     }
 }
 
+void maintask2(Queue** first)
+{
+    if ((*first) == NULL)
+    {
+        cout << "There is only no elements" << endl;
+        return;
+    }
+    Queue* ptr = *first;
+    for (int i = 0; ptr != NULL; i++)
+    {
+        if (i == 0)
+        {
+            *first = (*first)->next;
+            delete ptr;
+            ptr = *first;
+        }
+        else if (ptr->next)
+        {
+            Queue* del = ptr->next;
+            ptr->next = ptr->next->next;
+            ptr = ptr->next;
+            delete del;
+        }
+        else ptr = NULL;
+    }
+}
+
 int main()
 {
     Queue* first = NULL;
@@ -88,7 +115,8 @@ int main()
         cout << "Press 1 to enter/create new queue" << endl <<
             "Press 2 to view the queue" << endl <<
             "Press 3 to do main task1" << endl <<
-            "Press 4 to finish the perfomance" << endl;
+            "Press 4 to do main task2" << endl <<
+            "Press 5 to finish the perfomance" << endl;
         cin >> wish;
         switch (wish)
         {
@@ -113,6 +141,9 @@ int main()
             break;
 
         case 4:
+            maintask2(&first);
+            break;
+        case 5:
             cout << "Hope that was interesting to work with me, goodbye!" << endl;
             CleaningMemory(first);
             endsign = true;
