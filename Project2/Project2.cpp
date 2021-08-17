@@ -87,24 +87,6 @@ void maintask1(Queue** first)
     }
 }
 
-void maintask2(Queue **first)
-{
-    Queue* ptr = *first;
-    Queue* p;
-    while (ptr != NULL)
-    {
-        if (ptr->next) p = ptr->next;
-        else return;
-        if (ptr->next->next)
-        {
-            ptr->next = ptr->next->next;
-        }
-        else ptr->next = NULL;
-        delete p;
-        ptr = ptr->next;
-    }
-}
-
 int main()
 {
     Queue* first = NULL;
